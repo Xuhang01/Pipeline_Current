@@ -10,6 +10,7 @@ library(MatrixEQTL)
 
 ## Location of the package with the data files.
 data.dir = commandArgs(T)[1] ;
+reference.dir = commandArgs(T)[2];
 # base.dir = '.';
 
 ## Settings
@@ -18,12 +19,12 @@ data.dir = commandArgs(T)[1] ;
 useModel = modelLINEAR; # modelANOVA, modelLINEAR, or modelLINEAR_CROSS
 
 # Genotype file name
-SNP_file_name = paste(data.dir, "/OV-AU.Genotype_file.txt", sep="");
-snps_location_file_name = paste(data.dir, "/genotype_loc.txt", sep="");
+SNP_file_name = paste(data.dir, "/Genotype_file.txt", sep="");
+snps_location_file_name = paste(reference.dir, "/genotype_loc.txt", sep="");
 
 # Gene expression file name
-expression_file_name = paste(data.dir, "/OV-AU.Exp_file.txt", sep="");
-gene_location_file_name = paste(data.dir, "/gene_loc.txt", sep="");
+expression_file_name = paste(data.dir, "/Exp_file.txt", sep="");
+gene_location_file_name = paste(reference.dir, "/gene_loc.txt", sep="");
 
 # Covariates file name
 # Set to character() for no covariates

@@ -8,16 +8,16 @@ def boxplot_show_difference(Exp_file, Genotype_file, cis_eqtl_file):
     df_exp = pd.read_table(Exp_file,index_col=0)
     df_genotype = pd.read_table(Genotype_file,index_col=0)
     df_cis_eQTL = pd.read_table(cis_eqtl_file,sep="\t")
-    Specimen_list = df_genotype.columns.values
+    donor_list = df_genotype.columns.values
 
-    Number_of_sign = 5
+    Number_of_sign = 3
 
     for i in range(Number_of_sign):
         gene_id, snp_id = df_cis_eQTL[["gene","SNP"]].iloc[i,:]
 
         genotype_list = df_genotype[df_genotype.index.values==snp_id].values[0].tolist()
         exp_list = df_exp[df_exp.index.values==gene_id].values[0].tolist()
-        df_sub = pd.DataFrame(data=np.array([exp_list,genotype_list]).transpose(), columns=["exp","genotype"],index=Specimen_list)
+        df_sub = pd.DataFrame(data=np.array([exp_list,genotype_list]).transpose(), columns=["exp","genotype"],index=donor_list)
         
         print snp_id, gene_id
         print np.mean(df_sub[df_sub.genotype==1].exp), np.mean(df_sub[df_sub.genotype==0].exp), np.mean(df_sub[df_sub.genotype==1].exp)-np.mean(df_sub[df_sub.genotype==0].exp)
@@ -33,13 +33,13 @@ def Find_special_ciseQTL(cis_eqtl_file, Exp_file, Genotype_file):
     df_exp = pd.read_table(Exp_file,index_col=0)
     df_genotype = pd.read_table(Genotype_file,index_col=0)
     df_cis_eQTL = pd.read_table(cis_eqtl_file,sep="\t")
-    Specimen_list = df_genotype.columns.values
+    donor_list = df_genotype.columns.values
 
     for i in range(1000):
         snp_id, gene_id = df_cis_eQTL[["SNP","gene"]].iloc[i,:]
         sub_exp = df_exp[df_exp.index.values==gene_id].values[0].tolist()
         sub_genotype = df_genotype[df_genotype.index.values==snp_id].values[0].tolist()
-        df_sub = pd.DataFrame(data=np.array([sub_exp,sub_genotype]).transpose(), columns=["exp","genotype"],index=Specimen_list)
+        df_sub = pd.DataFrame(data=np.array([sub_exp,sub_genotype]).transpose(), columns=["exp","genotype"],index=donor_list)
         
 
         # condition
