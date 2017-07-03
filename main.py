@@ -1,5 +1,6 @@
 import os
 import re
+import numpy as np
 
 from DataProcessing.Remove_Duplicate_Expression import *
 from DataProcessing.Generate_Matrix_File import *
