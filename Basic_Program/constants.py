@@ -14,6 +14,6 @@ ICGC_filename_dict = {
     "JCN":"splice_variant.Project_id.tsv.gz"
 }
 Reference_file_list = {
-    "Gene_file":"./Reference_files/Processed_HNGC.txt"
-    "TAD_file": "./Reference_files/TAD hESC Combined.txt"
+    "Gene_file":"./Reference_files/gene_loc.txt"
+    "TAD_file": "./Reference_files/TAD_hESC_combined.txt"
 }
