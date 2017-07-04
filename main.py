@@ -104,7 +104,7 @@ def Pipeline_CNV_Genotyping(Project_ID):
 
 
 def main():
-    project_code_list = ["BLCA-US","COAD-US","BRCA-US","CESC-US","COAD-US","GBM-US","KIRC-US","KIRP-US","LAML-US",
+    project_code_list = ["BLCA-US","BRCA-US","CESC-US","COAD-US","GBM-US","KIRC-US","KIRP-US","LAML-US",
     "LIHC-US","LUAD-US","LUSC-US","OV-US","PAAD-US","PRAD-US","READ-US","SKCM-US","STAD-US","THCA-US","UCEC-US"]
     # project_code_list = ["BLCA-US"]
     print ">>>>>>>>>>>>Generate matrix files with CNV and exp files"

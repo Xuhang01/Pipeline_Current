@@ -23,14 +23,21 @@ def Generate_Exp_matrix(Exp_file,Exp_matrix_file,gene_number):
         try:
             chunk = df_Exp.get_chunk(chunk_size)
             chunk = chunk.sort_values(by=['gene_id'])
-            chunk.index = chunk.gene_id.tolist()
+            chunk.index = chunk['gene_id']
+            chunk = chunk[chunk['gene_id']!='?']
+            chunk = chunk[chunk['gene_id']!='SLC35E2']
+            # if len(chunk['icgc_donor_id'].unique())!=1:
+            #     print '--improper icgc_donor_id', chunk['icgc_donor_id'].unique()
+            #     break
             icgc_donor_id = chunk['icgc_donor_id'].iat[0]
-            if len(chunk['icgc_donor_id'].unique())!=1:
-                print '--improper icgc_donor_id', chunk['icgc_donor_id'].unique()
-                break
-            chunk = chunk.rename(columns={'normalized_read_count':icgc_donor_id})
+            chunk[icgc_donor_id]=chunk['normalized_read_count']
             if 'df_Exp_Matrix' not in dir():
-                df_Exp_Matrix = chunk[[icgc_donor_id]]
+                try: 
+                    df_Exp_Matrix = chunk[[icgc_donor_id]]
+                except ValueError:
+                    print '--invalid icgc_donor_id:', icgc_donor_id
+                    pass
+                
             else:
                 try: 
                     df_Exp_Matrix[icgc_donor_id]=chunk[icgc_donor_id]
